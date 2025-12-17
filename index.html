@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Política de Privacidade LGPD - Versão Gratuita</title>
+  <meta name="description" content="Gere um modelo educativo de política de privacidade para seu negócio. Totalmente grátis e sem riscos.">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --success: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f0f2f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 40px 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-section, .preview-section {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    }
+    .preview-container {
+      min-height: 500px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      background: #fafbff;
+      overflow: auto;
+    }
+    .disclaimer {
+      background: #fff8e1 !important;
+      padding: 15px !important;
+      border-left: 4px solid #ffc107 !important;
+      margin: 20px 0 !important;
+      font-family: Arial, sans-serif !important;
+    }
+    .api-promo {
+      background: linear-gradient(135deg, #eef2ff, #f0f4ff);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 25px;
+      margin: 25px 0;
+      text-align: center;
+    }
+    .api-promo h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    .api-promo p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    .api-btn {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      font-weight: bold;
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 10px;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .api-btn:hover {
+      background: #f0f4ff;
+      transform: scale(1.05);
+    }
+    .legal-warning {
+      background: #fff8e1;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 4px solid #ffc107;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 30px;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .logo {
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>✨ Gerador de Política de Privacidade LGPD</h1>
+      <p class="subtitle">Crie seu modelo educativo em minutos. <span style="background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px">100% gratuito e sem riscos</span></p>
+    </header>
+
+    <div class="main-content">
+      <div class="form-section">
+        <h2>.Configure seu modelo</h2>
+        <p style="margin-bottom: 20px; color: #64748b;">Responda 2 perguntas simples e gere seu documento</p>
+        
+        <div class="form-group">
+          <label for="businessType">Qual o tipo do seu negócio?</label>
+          <select id="businessType" required>
+            <option value="">Selecione uma opção</option>
+            <option value="pet_shop">Pet Shop / Clínica Veterinária</option>
+            <option value="medico">Consultório Médico / Saúde</option>
+            <option value="ecommerce">Loja Virtual / E-commerce</option>
+            <option value="autonomo">Autônomo / MEI / Prestador de Serviços</option>
+            <option value="restaurante">Restaurante / Delivery</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="businessName">Nome do seu negócio</label>
+          <input type="text" id="businessName" placeholder="Ex: Pet Shop do João" required>
+        </div>
+        
+        <button id="generateBtn" class="btn">✨ Gerar minha política gratuita</button>
+        
+        <div class="legal-warning">
+          <strong>⚠️ AVISO IMPORTANTE:</strong> Este é um <u>modelo educativo</u> gerado automaticamente. 
+          <b>NÃO substitui consultoria jurídica</b>. Você assume total responsabilidade pelo uso.
+        </div>
+        
+        <div class="api-promo">
+          <h3>🚀 Quer monetizar esta tecnologia?</h3>
+          <p>Desenvolvedores pagam para usar esta API em seus apps e sites.</p>
+          <p><strong>Ganhe R$0,01 por requisição</strong> sem fazer nada!</p>
+          <a href="https://rapidapi.com/signup" target="_blank" class="api-btn">
+            ✅ Cadastrar API na RapidAPI (5 minutos)
+          </a>
+          <p style="margin-top: 10px; font-size: 0.9rem; color: #64748b;">
+            Receba em <strong>Pix, PayPal ou conta bancária</strong> automaticamente
+          </p>
+        </div>
+      </div>
+      
+      <div class="preview-section">
+        <h2>📄 Visualização do documento</h2>
+        <div id="previewContainer" class="preview-container">
+          <p style="text-align: center; color: #64748b; padding-top: 150px;">
+            <strong>Selecione seu tipo de negócio acima para gerar a pré-visualização</strong><br>
+            Exemplo: Pet Shop, Médico, E-commerce...
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Protegido pela <strong>Lei de Direitos Autorais</strong> - Modelo educativo</p>
+      <p style="margin-top: 8px;">© 2025 LGPD Safe Generator - <span class="logo">LegalTech</span></p>
+      <div class="legal-warning" style="margin-top: 20px; text-align: left;">
+        <strong>⚠️ DISCLAIMER JURÍDICO:</strong><br>
+        Este serviço gera <u>modelos educativos</u>. <b>NÃO constitui consultoria jurídica</b>. 
+        Você assume total responsabilidade pelo uso. Recomendamos revisão por advogado.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('generateBtn').addEventListener('click', generatePolicy);
+    
+    function generatePolicy() {
+      const businessType = document.getElementById('businessType').value;
+      const businessName = document.getElementById('businessName').value;
+      
+      if (!businessType || !businessName) {
+        alert('Por favor, preencha todos os campos!');
+        return;
+      }
+      
+      const previewContainer = document.getElementById('previewContainer');
+      previewContainer.innerHTML = '<p style="text-align:center;padding:100px">Gerando política de privacidade... Aguarde um momento ✨</p>';
+      
+      setTimeout(() => {
+        let content = '';
+        
+        switch(businessType) {
+          case 'pet_shop':
+            content = `
+              <h1>Política de Privacidade - ${businessName}</h1>
+              <h2>1. Dados que coletamos</h2>
+              <p>Coletamos apenas:</p>
+              <ul>
+                <li>Seu nome e contato quando agenda serviço</li>
+                <li>Nome, raça e histórico de saúde do seu pet</li>
+                <li>E-mail para enviar lembretes de vacinas</li>
+              </ul>
+              
+              <h2>2. Como usamos seus dados</h2>
+              <p>Utilizamos exclusivamente para:</p>
+              <ul>
+                <li>Agendar banho, tosa ou consultas veterinárias</li>
+                <li>Enviar alertas sobre vacinas e vermifugação</li>
+                <li>Melhorar nossos serviços com base em seu feedback</li>
+              </ul>
+              
+              <!-- ⚠️ AVISO LEGAL OBRIGATÓRIO -->
+              <div class="disclaimer">
+                <strong>⚠️ AVISO LEGAL:</strong><br>
+                Este documento é <u>exclusivamente um modelo educativo</u>.<br>
+                <b>NÃO constitui consultoria jurídica</b>.<br>
+                Você assume total responsabilidade pelo uso deste material.
+              </div>
+            `;
+            break;
+          
+          case 'medico':
+            content = `
+              <h1>Política de Privacidade - ${businessName}</h1>
+              <h2>1. Dados sensíveis</h2>
+              <p>Coletamos dados pessoais e históricos médicos para atendimento.</p>
+              <h2>2. Base legal</h2>
+              <p>Tratamos seus dados conforme Art. 7º e 11º da LGPD.</p>
+              
+              <!-- ⚠️ AVISO LEGAL OBRIGATÓRIO -->
+              <div class="disclaimer">
+                <strong>⚠️ AVISO LEGAL:</strong><br>
+                Este documento é <u>exclusivamente um modelo educativo</u>.<br>
+                <b>NÃO constitui consultoria jurídica</b>.<br>
+                Você assume total responsabilidade pelo uso deste material.
+              </div>
+            `;
+            break;
+          
+          case 'ecommerce':
+            content = `
+              <h1>Política de Privacidade - ${businessName}</h1>
+              <h2>1. Dados coletados</h2>
+              <p>Coletamos dados de navegação, cadastro e pagamento.</p>
+              <h2>2. Compartilhamento</h2>
+              <p>Compartilhamos apenas com empresas de entrega e gateways de pagamento.</p>
+              
+              <!-- ⚠️ AVISO LEGAL OBRIGATÓRIO -->
+              <div class="disclaimer">
+                <strong>⚠️ AVISO LEGAL:</strong><br>
+                Este documento é <u>exclusivamente um modelo educativo</u>.<br>
+                <b>NÃO constitui consultoria jurídica</b>.<br>
+                Você assume total responsabilidade pelo uso deste material.
+              </div>
+            `;
+            break;
+          
+          case 'autonomo':
+            content = `
+              <h1>Política de Privacidade - ${businessName}</h1>
+              <h2>1. Dados coletados</h2>
+              <p>Recebo seus dados de contato e informações sobre o serviço solicitado.</p>
+              <h2>2. Prazo de armazenamento</h2>
+              <p>Mantenho seus dados pelo tempo necessário para prestação do serviço.</p>
+              
+              <!-- ⚠️ AVISO LEGAL OBRIGATÓRIO -->
+              <div class="disclaimer">
+                <strong>⚠️ AVISO LEGAL:</strong><br>
+                Este documento é <u>exclusivamente um modelo educativo</u>.<br>
+                <b>NÃO constitui consultoria jurídica</b>.<br>
+                Você assume total responsabilidade pelo uso deste material.
+              </div>
+            `;
+            break;
+          
+          case 'restaurante':
+            content = `
+              <h1>Política de Privacidade - ${businessName}</h1>
+              <h2>1. Dados coletados</h2>
+              <p>Coletamos informações quando você faz reserva ou pede delivery.</p>
+              <h2>2. Uso de tecnologia</h2>
+              <p>Utilizamos câmeras de segurança apenas em áreas comuns.</p>
+              
+              <!-- ⚠️ AVISO LEGAL OBRIGATÓRIO -->
+              <div class="disclaimer">
+                <strong>⚠️ AVISO LEGAL:</strong><br>
+                Este documento é <u>exclusivamente um modelo educativo</u>.<br>
+                <b>NÃO constitui consultoria jurídica</b>.<br>
+                Você assume total responsabilidade pelo uso deste material.
+              </div>
+            `;
+            break;
+        }
+        
+        previewContainer.innerHTML = content;
+        previewContainer.scrollIntoView({ behavior: 'smooth' });
+      }, 800);
+    }
+  </script>
+</body>
+</html>
