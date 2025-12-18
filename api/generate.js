@@ -1,33 +1,23 @@
-// /api/generate.js
-import { TEMPLATES } from '../lib/templates.js';
+// Substitua esta parte do código
+if (!tipo_negocio || !['pet_shop', 'medico', 'ecommerce', 'autonomo', 'restaurante'].includes(tipo_negocio)) {
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Método não permitido' });
-  }
+// Por esta versão mais flexível
+const validTypes = {
+  'pet_shop': ['pet shop', 'clínica veterinária', 'pet shop / clínica veterinária'],
+  'medico': ['consultório médico', 'saúde', 'consultório médico / saúde'],
+  'ecommerce': ['loja virtual', 'e-commerce', 'loja virtual / e-commerce'],
+  'autonomo': ['autônomo', 'mei', 'prestador de serviços', 'autônomo / mei / prestador de serviços'],
+  'restaurante': ['restaurante', 'delivery', 'restaurante / delivery']
+};
 
-  try {
-    const { tipo_negocio, nome_empresa } = req.body;
-    
-    if (!tipo_negocio || !['pet_shop', 'medico', 'ecommerce', 'autonomo', 'restaurante'].includes(tipo_negocio)) {
-      return res.status(400).json({ error: 'Tipo de negócio inválido' });
-    }
+// Converta para lowercase e remova caracteres especiais
+const normalizedInput = tipo_negocio.toLowerCase().replace(/[^a-z0-9 ]/g, '');
 
-    const template = TEMPLATES[tipo_negocio];
-    
-    if (!template) {
-      return res.status(404).json({ error: 'Template não encontrado' });
-    }
+// Verifique se o valor corresponde a algum tipo válido
+const isValid = Object.keys(validTypes).some(key => 
+  validTypes[key].some(value => value === normalizedInput)
+);
 
-    const htmlContent = template.content.replace(/\[NOME DO SEU PET SHOP\]|\[NOME DO SEU CONSULTÓRIO\]|\[NOME DA SUA LOJA\]|\[SEU NOME PROFISSIONAL\]|\[NOME DO SEU RESTAURANTE\]/g, nome_empresa || 'Sua Empresa');
-    
-    res.status(200).json({
-      html: `<h1>${template.title.replace(/\[.*?\]/, nome_empresa || 'Sua Empresa')}</h1>${htmlContent}`,
-      disclaimer: "AVISO: Modelo educativo. Consulte advogado."
-    });
-    
-  } catch (error) {
-    console.error('Erro na API:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
-  }
+if (!tipo_negocio || !isValid) {
+  return res.status(400).json({ error: 'Tipo de negócio inválido' });
 }
