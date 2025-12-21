@@ -1,23 +1,45 @@
-// Substitua esta parte do código
-if (!tipo_negocio || !['pet_shop', 'medico', 'ecommerce', 'autonomo', 'restaurante'].includes(tipo_negocio)) {
+import { TEMPLATES } from '../lib/templates.js';
 
-// Por esta versão mais flexível
-const validTypes = {
-  'pet_shop': ['pet shop', 'clínica veterinária', 'pet shop / clínica veterinária'],
-  'medico': ['consultório médico', 'saúde', 'consultório médico / saúde'],
-  'ecommerce': ['loja virtual', 'e-commerce', 'loja virtual / e-commerce'],
-  'autonomo': ['autônomo', 'mei', 'prestador de serviços', 'autônomo / mei / prestador de serviços'],
-  'restaurante': ['restaurante', 'delivery', 'restaurante / delivery']
-};
+export default function handler(req, res) {
+  // 1. Verifica se o método é POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Método não permitido' });
+  }
 
-// Converta para lowercase e remova caracteres especiais
-const normalizedInput = tipo_negocio.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+  const { tipo_negocio, nome_negocio } = req.body;
 
-// Verifique se o valor corresponde a algum tipo válido
-const isValid = Object.keys(validTypes).some(key => 
-  validTypes[key].some(value => value === normalizedInput)
-);
+  // 2. Mapeamento para normalização dos tipos vindo do formulário ou API
+  const typeMapping = {
+    'pet_shop': ['pet_shop', 'pet shop', 'clínica veterinária', 'pet shop / clínica veterinária'],
+    'medico': ['medico', 'consultório médico', 'saúde', 'consultório médico / saúde'],
+    'ecommerce': ['ecommerce', 'loja virtual', 'e-commerce', 'loja virtual / e-commerce'],
+    'autonomo': ['autonomo', 'autônomo', 'mei', 'prestador de serviços', 'autônomo / mei / prestador de serviços'],
+    'restaurante': ['restaurante', 'delivery', 'restaurante / delivery']
+  };
 
-if (!tipo_negocio || !isValid) {
-  return res.status(400).json({ error: 'Tipo de negócio inválido' });
+  // 3. Normalização do input
+  const normalizedInput = tipo_negocio ? tipo_negocio.toLowerCase().trim() : '';
+  
+  // 4. Encontra a chave correta no objeto TEMPLATES
+  const finalType = Object.keys(typeMapping).find(key => 
+    typeMapping[key].includes(normalizedInput)
+  );
+
+  // 5. Validação
+  if (!finalType || !nome_negocio) {
+    return res.status(400).json({ 
+      error: 'Dados insuficientes ou tipo de negócio inválido',
+      recebido: tipo_negocio 
+    });
+  }
+
+  // 6. Busca o template e substitui o nome do negócio
+  const template = TEMPLATES[finalType];
+  const renderedContent = template.content.replace(/\[NOME DO SEU.*?\]/g, nome_negocio);
+
+  return res.status(200).json({
+    title: template.title.replace(/\[NOME DO SEU.*?\]/g, nome_negocio),
+    content: renderedContent,
+    keywords: template.keywords
+  });
 }
